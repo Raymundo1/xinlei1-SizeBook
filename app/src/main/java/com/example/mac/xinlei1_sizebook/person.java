@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class person {
-    
+
     private String name;
 
     private Date date;
