@@ -80,14 +80,6 @@ public class MainActivity extends AppCompatActivity {
         personNameList.add("Ray");
         personNameList.add("Tim");
     }
-
-    public static Drawable getDrawable(Context context, int resource) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return context.getResources().getDrawable(resource);
-        } else {
-            return context.getResources().getDrawable(resource, null);
-        }
-    }
-
+    
 
 }
