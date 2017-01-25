@@ -1,5 +1,9 @@
 package com.example.mac.xinlei1_sizebook;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         // specify an adapter
         mAdapter = new PersonNameAdapter(personNameList);
         mRecyclerView.setAdapter(mAdapter);
+
+        // add a decoration of list
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
+        //mRecyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line), true, true));
     }
 
     /**
@@ -71,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
         personNameList.add("Kevin");
         personNameList.add("Ray");
         personNameList.add("Tim");
+    }
+
+    public static Drawable getDrawable(Context context, int resource) {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return context.getResources().getDrawable(resource);
+        } else {
+            return context.getResources().getDrawable(resource, null);
+        }
     }
 
 

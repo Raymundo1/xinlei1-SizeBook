@@ -8,6 +8,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/person_name"
         android:layout_gravity="center_vertical"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        />
 
 </LinearLayout>
