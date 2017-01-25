@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,12 +23,14 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
-        // each person display a name in MainActivity
+        // each person display a name and a icon in MainActivity
         TextView personNamev;
+        ImageView personIconv;
 
         ViewHolder(View view) {
             super(view);
             personNamev = (TextView) view.findViewById(R.id.person_name);
+            personIconv = (ImageView) view.findViewById(R.id.people_icon);
         }
     }
 
@@ -52,6 +55,7 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
         Log.d("PersonNameJava", Integer.toString(position));
         String PersonName = mPersonNameList.get(position);
         holder.personNamev.setText(PersonName);
+        holder.personIconv.setImageResource(R.drawable.people);
     }
 
     // Return the size of your List
