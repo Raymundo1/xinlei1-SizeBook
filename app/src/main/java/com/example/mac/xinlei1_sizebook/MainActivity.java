@@ -1,6 +1,7 @@
 package com.example.mac.xinlei1_sizebook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -50,12 +51,6 @@ public class MainActivity extends AppCompatActivity {
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line), true, true));
     }
 
-    /**
-     * Add menu UI
-     * @param menu
-     * @return true
-     */
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.book_menu, menu);
@@ -66,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_person:
-                Toast.makeText(this, "You clicked Add", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Add_activity.class);
+                startActivity(intent);
                 break;
 
             default:

@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Created by mac on 2017/1/23.
+ * Person class
  */
 
 public class person {
@@ -91,5 +92,10 @@ public class person {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return  name + date.toString();
     }
 }

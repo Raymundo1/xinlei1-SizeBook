@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">xinlei1-SizeBook</string>
     <string name="add">add</string>
+    <string name="done">done</string>
+    <string name="name">Name :</string>
+    <string name="date">Date :</string>
+    <string name="neck">Neck :</string>
+    <string name="bust">Bust :</string>
+    <string name="chest">Chest :</string>
+    <string name="waist">Waist :</string>
+    <string name="hip">Hip :</string>
+    <string name="inseam">Inseam :</string>
+    <string name="comment">Comment :</string>
 </resources>
