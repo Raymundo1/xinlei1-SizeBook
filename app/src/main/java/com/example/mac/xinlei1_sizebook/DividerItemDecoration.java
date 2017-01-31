@@ -12,6 +12,7 @@ import android.view.View;
 
 /**
  * Created by mac on 2017/1/24.
+ * Simple RecyclerView ItemDecoration
  */
 
 

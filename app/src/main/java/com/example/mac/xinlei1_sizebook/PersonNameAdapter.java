@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 /**
  * Created by mac on 2017/1/23.
+ * Resource: http://developer.android.com/training/material/lists-cards.html
  */
+
+
 
 public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.ViewHolder> {
 
@@ -34,6 +38,7 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
         }
     }
 
+    // Provide a suitable constructor
     public PersonNameAdapter(List<String> PersonNameList) {
         mPersonNameList = PersonNameList;
     }
@@ -45,14 +50,22 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.person_item, parent, false);
 
-        ViewHolder vh = new ViewHolder(v);
+        final ViewHolder vh = new ViewHolder(v);
+        vh.personNamev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = vh.getAdapterPosition();
+
+                String name = mPersonNameList.get(position);
+                Toast.makeText(v.getContext(), "you clicked " + name, Toast.LENGTH_SHORT).show();
+            }
+        });
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d("PersonNameJava", Integer.toString(position));
         String PersonName = mPersonNameList.get(position);
         holder.personNamev.setText(PersonName);
         holder.personIconv.setImageResource(R.drawable.people);
