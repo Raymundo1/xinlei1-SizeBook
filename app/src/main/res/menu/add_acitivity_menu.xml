@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/add_person_cancel"
+        android:icon="@drawable/cancel"
+        android:title="cancel"
+        app:showAsAction="always"
+        />
+
+    <item
         android:id="@+id/add_person_done"
         android:icon="@drawable/done"
         android:title="@string/done"

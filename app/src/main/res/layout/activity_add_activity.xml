@@ -34,6 +34,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/add_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -59,11 +60,12 @@
                 />
 
             <EditText
+                android:id="@+id/add_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="3"
-                android:hint="Please Type Valid Date"
+                android:hint="yyyy-mm-dd format"
                 android:backgroundTint="@android:color/darker_gray"
                 />
 
@@ -85,6 +87,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_neck"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -110,6 +113,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_bust"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -134,6 +138,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_chest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -158,6 +163,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_waist"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -182,6 +188,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_hip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -206,6 +213,7 @@
                 />
 
             <EditText
+                android:id="@+id/add_inseam"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -227,9 +235,11 @@
                 android:layout_gravity="center"
                 android:text="@string/comment"
                 android:textSize="20sp"
+                android:layout_marginTop="8dp"
                 />
 
             <EditText
+                android:id="@+id/add_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

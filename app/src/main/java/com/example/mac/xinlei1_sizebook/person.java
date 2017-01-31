@@ -1,27 +1,70 @@
 package com.example.mac.xinlei1_sizebook;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by mac on 2017/1/23.
  * Person class
  */
 
-public class person {
+public class person implements Serializable{
 
     private String name;
 
     private Date date;
+    private DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 
-    private float neck;
-    private float bust;
-    private float chest;
-    private float waist;
-    private float hip;
-    private float inseam;
+    private Float neck;
+    private Float bust;
+    private Float chest;
+    private Float waist;
+    private Float hip;
+    private Float inseam;
 
     private String comment;
 
+    public person(String name, Date date, Float neck, Float bust, Float chest,
+                  Float waist, Float hip, Float inseam, String comment) {
+        this.name = name;
+        this.date = date;
+        this.neck = neck;
+        this.bust = bust;
+        this.chest = chest;
+        this.waist = waist;
+        this.hip = hip;
+        this.inseam = inseam;
+        this.comment = comment;
+    }
+
+    public person(String name, Date date) {
+        this.name = name;
+        this.date = date;
+        this.neck = null;
+        this.bust = null;
+        this.chest = null;
+        this.waist = null;
+        this.hip = null;
+        this.inseam = null;
+        this.comment = null;
+    }
+
+    public person() {
+        this.name = null;
+        this.date = null;
+        this.neck = null;
+        this.bust = null;
+        this.chest = null;
+        this.waist = null;
+        this.hip = null;
+        this.inseam = null;
+        this.comment = null;
+    }
+
+    // Name
     public String getName() {
         return name;
     }
@@ -30,6 +73,8 @@ public class person {
         this.name = name;
     }
 
+
+    // Date
     public Date getDate() {
         return date;
     }
@@ -38,6 +83,20 @@ public class person {
         this.date = date;
     }
 
+    public void setDate(String date) {
+        try {
+            if (date.length() == 0) {
+                return;
+            } else {
+                this.date = format.parse(date);
+            }
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // Neck
     public float getNeck() {
         return neck;
     }
@@ -46,6 +105,16 @@ public class person {
         this.neck = neck;
     }
 
+    public void setNeck(String neck) {
+        if (neck.length() == 0) {
+            return;
+        } else {
+            this.neck = Float.valueOf(neck);
+        }
+    }
+
+
+    // Bust
     public float getBust() {
         return bust;
     }
@@ -54,6 +123,16 @@ public class person {
         this.bust = bust;
     }
 
+    public void setBust(String bust) {
+        if (bust.length() == 0) {
+            return;
+        } else {
+            this.bust = Float.valueOf(bust);
+        }
+    }
+
+
+    // Chest
     public float getChest() {
         return chest;
     }
@@ -62,6 +141,16 @@ public class person {
         this.chest = chest;
     }
 
+    public void setChest(String chest) {
+        if (chest.length() == 0) {
+            return;
+        } else {
+            this.chest = Float.valueOf(chest);
+        }
+    }
+
+
+    // Waist
     public float getWaist() {
         return waist;
     }
@@ -70,6 +159,16 @@ public class person {
         this.waist = waist;
     }
 
+    public void setWaist(String waist) {
+        if (waist.length() == 0) {
+            return;
+        } else {
+            this.waist = Float.valueOf(waist);
+        }
+    }
+
+
+    // Hip
     public float getHip() {
         return hip;
     }
@@ -78,6 +177,16 @@ public class person {
         this.hip = hip;
     }
 
+    public void setHip(String hip) {
+        if (hip.length() == 0) {
+            return;
+        } else {
+            this.hip = Float.valueOf(hip);
+        }
+    }
+
+
+    // Inseam
     public float getInseam() {
         return inseam;
     }
@@ -86,16 +195,35 @@ public class person {
         this.inseam = inseam;
     }
 
+    public void setInseam(String inseam) {
+        if (inseam.length() == 0) {
+            return;
+        } else {
+            this.inseam = Float.valueOf(inseam);
+        }
+    }
+
+
+    // Comment
     public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        if (comment.length() == 0) {
+            return;
+        } else {
+            this.comment = comment;
+        }
     }
+
 
     @Override
     public String toString() {
-        return  name + date.toString();
+        /*return  " Name = " + name + " Date =  " + date.toString() + " Neck = " + neck.toString()
+                + " Bust = " + bust.toString() + " Chest = " + chest.toString() +
+                " Waist = " + waist.toString() + " Hip = " + hip.toString() + " Inseam = " + inseam.toString()
+                + " Comment = " + comment;*/
+        return "Name = " + this.name;
     }
 }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityConstants{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -25,10 +25,25 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> personNameList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getIntent().getExtras() != null) {
+            int callingActivity = getIntent().getIntExtra("calling-activity", 0);
+            switch (callingActivity) {
+                case ActivityConstants.ADD_ACTIVITY:
+                    person new_person = (person) getIntent().getSerializableExtra("new_person");
+                    Log.d("new_person", new_person.toString());
+
+                    break;
+
+                case ActivityConstants.VIEW_ACTIVITY:
+                    break;
+            }
+        }
 
         initPersonName();
 
@@ -50,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line), true, true));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
