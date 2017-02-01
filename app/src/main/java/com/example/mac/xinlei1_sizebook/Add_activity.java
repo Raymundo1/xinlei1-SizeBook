@@ -52,9 +52,9 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
             case R.id.add_person_done:
                 try {
                     // store the information in person class
-                    if (editText_name.getText().toString().length() == 0) {
+                    if (editText_name.getText().toString().length() == 0 || editText_date.getText().toString().length() == 0) {
                         AlertDialog.Builder builder2 = new AlertDialog.Builder(Add_activity.this);
-                        builder2.setMessage("Name can not be empty")
+                        builder2.setMessage("Name and Date can not be empty")
                                 .setTitle("Warning")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
@@ -66,16 +66,7 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
                     } else {
 
                         person new_person = new person();
-                        new_person.setName(editText_name.getText().toString());
-                        new_person.setDate(editText_date.getText().toString());
-                        new_person.setNeck(editText_neck.getText().toString());
-                        new_person.setBust(editText_bust.getText().toString());
-                        new_person.setChest(editText_chest.getText().toString());
-                        new_person.setWaist(editText_waist.getText().toString());
-                        new_person.setHip(editText_hip.getText().toString());
-                        new_person.setInseam(editText_inseam.getText().toString());
-                        new_person.setComment(editText_comment.getText().toString());
-
+                        new_person = Set_new_person(new_person);
 
                         Log.d("Add_person type", new_person.getClass().getName());
                         Log.d("Add_person", new_person.toString());
@@ -117,4 +108,21 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
         }
         return true;
     }
+
+    private person Set_new_person(person new_person) {
+
+        new_person.setName(editText_name.getText().toString());
+        new_person.setDate(editText_date.getText().toString());
+        new_person.setNeck(editText_neck.getText().toString());
+        new_person.setBust(editText_bust.getText().toString());
+        new_person.setChest(editText_chest.getText().toString());
+        new_person.setWaist(editText_waist.getText().toString());
+        new_person.setHip(editText_hip.getText().toString());
+        new_person.setInseam(editText_inseam.getText().toString());
+        new_person.setComment(editText_comment.getText().toString());
+
+
+        return new_person;
+    }
+
 }

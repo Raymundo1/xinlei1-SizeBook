@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.ViewHolder> {
 
     // we need a list of person names
-    private List<String> mPersonNameList;
+    private ArrayList<String> mPersonNameList = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -39,7 +40,7 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
     }
 
     // Provide a suitable constructor
-    public PersonNameAdapter(List<String> PersonNameList) {
+    public PersonNameAdapter(ArrayList<String> PersonNameList) {
         mPersonNameList = PersonNameList;
     }
 

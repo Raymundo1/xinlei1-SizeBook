@@ -1,8 +1,11 @@
 package com.example.mac.xinlei1_sizebook;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,8 +18,9 @@ public class person implements Serializable{
 
     private String name;
 
-    private Date date;
-    private DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+    //private Calendar date = Calendar.getInstance();
+    //private SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+    private String date;
 
     private Float neck;
     private Float bust;
@@ -27,7 +31,7 @@ public class person implements Serializable{
 
     private String comment;
 
-    public person(String name, Date date, Float neck, Float bust, Float chest,
+    public person(String name, String date, Float neck, Float bust, Float chest,
                   Float waist, Float hip, Float inseam, String comment) {
         this.name = name;
         this.date = date;
@@ -40,7 +44,7 @@ public class person implements Serializable{
         this.comment = comment;
     }
 
-    public person(String name, Date date) {
+    public person(String name, String date) {
         this.name = name;
         this.date = date;
         this.neck = null;
@@ -75,25 +79,23 @@ public class person implements Serializable{
 
 
     // Date
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
+    /*
     public void setDate(String date) {
-        try {
-            if (date.length() == 0) {
+        if (date.length() == 0) {
                 return;
-            } else {
-                this.date = format.parse(date);
-            }
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
+        } else {
+                this.date = date;
         }
-    }
+
+    }*/
 
 
     // Neck
@@ -210,9 +212,7 @@ public class person implements Serializable{
     }
 
     public void setComment(String comment) {
-        if (comment.length() == 0) {
-            return;
-        } else {
+        if (comment.length() != 0) {
             this.comment = comment;
         }
     }
@@ -224,6 +224,15 @@ public class person implements Serializable{
                 + " Bust = " + bust.toString() + " Chest = " + chest.toString() +
                 " Waist = " + waist.toString() + " Hip = " + hip.toString() + " Inseam = " + inseam.toString()
                 + " Comment = " + comment;*/
-        return "Name = " + this.name;
+        /*
+        try {
+            return "Name = " + this.name + ", Date = " + date;
+        } catch (NullPointerException e){
+            return "Name = " + this.name;
+        } catch (RuntimeException e){
+            return "Name = " + this.name;
+        }*/
+
+        return "Name = " + this.name + ", Date = " + date;
     }
 }

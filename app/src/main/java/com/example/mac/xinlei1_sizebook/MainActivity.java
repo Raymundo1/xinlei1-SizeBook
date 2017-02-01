@@ -14,22 +14,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ActivityConstants{
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private static final String FILENAME = "person.txt";
 
-    private List<String> personNameList = new ArrayList<>();
+    //private RecyclerView mRecyclerView;
+    //private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.LayoutManager mLayoutManager;
+
+    private ArrayList<String> personNameList = new ArrayList<>();
+    private ArrayList<person> personList = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // load the person_list from JSON FILE
+        loadFromFile();
 
         if (getIntent().getExtras() != null) {
             int callingActivity = getIntent().getIntExtra("calling-activity", 0);
@@ -37,35 +60,42 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
                 case ActivityConstants.ADD_ACTIVITY:
                     person new_person = (person) getIntent().getSerializableExtra("new_person");
                     Log.d("new_person", new_person.toString());
-
+                    personList.add(new_person);
+                    saveInFile();
                     break;
 
                 case ActivityConstants.VIEW_ACTIVITY:
+                    // we should saveInFile when we edit in ViewActivity
                     break;
             }
         }
 
-        initPersonName();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        personNameList = TransferPersonListToNameList(personList, personNameList);
+
+        Log.d("Check NameList", personNameList.toString());
+
+
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter
-        mAdapter = new PersonNameAdapter(personNameList);
+        RecyclerView.Adapter mAdapter = new PersonNameAdapter(personNameList);
         mRecyclerView.setAdapter(mAdapter);
 
         // add a decoration of list
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line), true, true));
-    }
 
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_person:
+                saveInFile();
                 Intent intent = new Intent(MainActivity.this, Add_activity.class);
                 startActivity(intent);
                 break;
@@ -86,12 +117,59 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
         return true;
     }
 
-    public void initPersonName() {
-        personNameList.add("John");
-        personNameList.add("Kevin");
-        personNameList.add("Ray");
-        personNameList.add("Tim");
+    private void loadFromFile() {
+        try {
+
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+
+            personList = gson.fromJson(in, new TypeToken<List<person>>(){}.getType());
+
+            fis.close();
+
+        } catch (FileNotFoundException e) {
+            personList = new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            Log.d("PersonList", personList.toString());
+            gson.toJson(personList, out);
+            out.flush();
+
+            fos.close();
+
+        } catch (FileNotFoundException e){
+            throw new RuntimeException();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private ArrayList<String> TransferPersonListToNameList(ArrayList<person> personList, ArrayList<String> personNameList){
+        String tem_name;
+
+        if (!personNameList.isEmpty()) {
+            personNameList.clear();
+        }
+
+        for (person person_item : personList) {
+            tem_name = person_item.getName();
+            personNameList.add(tem_name);
+        }
+
+        return personNameList;
+    }
 
 }
