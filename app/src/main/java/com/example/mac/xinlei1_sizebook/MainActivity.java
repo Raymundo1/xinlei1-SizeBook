@@ -59,8 +59,19 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
             switch (callingActivity) {
                 case ActivityConstants.ADD_ACTIVITY:
                     person new_person = (person) getIntent().getSerializableExtra("new_person");
-                    Log.d("new_person", new_person.toString());
-                    personList.add(new_person);
+
+                    if ( personList.isEmpty() ) {
+                        Log.d("new_person", new_person.toString());
+                        personList.add(new_person);
+                    } else {
+                        if (!personList.get(personList.size() - 1).equals(new_person)) {
+                            Log.d("check if it is same", Boolean.toString(personList.get(personList.size() - 1).equals(new_person)));
+                            Log.d("new_person", new_person.toString());
+                            personList.add(new_person);
+                        }
+                    }
+
+                    //getIntent().removeExtra("new_person");
                     saveInFile();
                     break;
 
@@ -171,5 +182,6 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
 
         return personNameList;
     }
+    
 
 }

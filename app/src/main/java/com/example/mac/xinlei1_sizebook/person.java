@@ -217,6 +217,20 @@ public class person implements Serializable{
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+
+        final person other = (person) obj;
+
+        if ((other.name.equals(this.name)) && (other.date.equals(this.date))){
+            return true;
+        }
+
+        return false;
+    }
 
     @Override
     public String toString() {
