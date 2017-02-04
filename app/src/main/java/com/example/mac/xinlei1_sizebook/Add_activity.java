@@ -2,6 +2,7 @@ package com.example.mac.xinlei1_sizebook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
     private EditText editText_hip;
     private EditText editText_inseam;
     private EditText editText_comment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
             case R.id.add_person_done:
                 try {
                     // store the information in person class
-                    if (editText_name.getText().toString().length() == 0 || editText_date.getText().toString().length() == 0) {
+                    if (editText_name.getText().toString().length() == 0) {
                         AlertDialog.Builder builder2 = new AlertDialog.Builder(Add_activity.this);
                         builder2.setMessage("Name and Date can not be empty")
                                 .setTitle("Warning")
@@ -64,9 +66,16 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
                                 });
                         builder2.show();
                     } else {
+                        int count = 0;
+                        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+                        int defaultValue = getPreferences(MODE_PRIVATE).getInt("count_person",count);
+                        ++defaultValue;
+                        getPreferences(MODE_PRIVATE).edit().putInt("count_person", defaultValue).apply();
+                        count = getPreferences(MODE_PRIVATE).getInt("count_person", count);
 
                         person new_person = new person();
                         new_person = Set_new_person(new_person);
+                        new_person.setId(count);
 
                         Log.d("Add_person type", new_person.getClass().getName());
                         Log.d("Add_person", new_person.toString());

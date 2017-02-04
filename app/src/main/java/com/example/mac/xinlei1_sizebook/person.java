@@ -31,6 +31,8 @@ public class person implements Serializable{
 
     private String comment;
 
+    private Integer id;
+
     public person(String name, String date, Float neck, Float bust, Float chest,
                   Float waist, Float hip, Float inseam, String comment) {
         this.name = name;
@@ -42,6 +44,7 @@ public class person implements Serializable{
         this.hip = hip;
         this.inseam = inseam;
         this.comment = comment;
+        this.id = 0;
     }
 
     public person(String name, String date) {
@@ -54,6 +57,7 @@ public class person implements Serializable{
         this.hip = null;
         this.inseam = null;
         this.comment = null;
+        this.id = 0;
     }
 
     public person() {
@@ -66,6 +70,7 @@ public class person implements Serializable{
         this.hip = null;
         this.inseam = null;
         this.comment = null;
+        this.id = 0;
     }
 
     // Name
@@ -217,6 +222,16 @@ public class person implements Serializable{
         }
     }
 
+    // ID
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if(obj == null) {
@@ -225,7 +240,7 @@ public class person implements Serializable{
 
         final person other = (person) obj;
 
-        if ((other.name.equals(this.name)) && (other.date.equals(this.date))){
+        if (other.id.equals(this.id)){
             return true;
         }
 
@@ -247,6 +262,6 @@ public class person implements Serializable{
             return "Name = " + this.name;
         }*/
 
-        return "Name = " + this.name + ", Date = " + date;
+        return "Name = " + this.name + ", Date = " + date + ", Id = " + this.id.toString();
     }
 }
