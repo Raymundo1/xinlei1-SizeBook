@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
                         }
                     }
 
-                    //getIntent().removeExtra("new_person");
                     saveInFile();
+                    getIntent().putExtra("calling-activity", ActivityConstants.MAIN_ACTIVITY);
                     break;
 
                 case ActivityConstants.VIEW_ACTIVITY:
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
                     editor.apply();
 
                     saveInFile();
+                    getIntent().putExtra("calling-activity", ActivityConstants.MAIN_ACTIVITY);
                     break;
             }
         }

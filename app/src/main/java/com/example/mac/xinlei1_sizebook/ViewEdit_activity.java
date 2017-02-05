@@ -73,7 +73,9 @@ public class ViewEdit_activity extends AppCompatActivity implements ActivityCons
                 break;
 
             case R.id.edit_person:
-                Toast.makeText(ViewEdit_activity.this, "You clicked edit", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(ViewEdit_activity.this, Edit_activity.class);
+                intent1.putExtra("edit_person_id", person_id);
+                startActivity(intent1);
                 break;
 
             default:
