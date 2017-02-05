@@ -22,19 +22,19 @@ public class person implements Serializable{
     //private SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
     private String date;
 
-    private Float neck;
-    private Float bust;
-    private Float chest;
-    private Float waist;
-    private Float hip;
-    private Float inseam;
+    private double neck;
+    private double bust;
+    private double chest;
+    private double waist;
+    private double hip;
+    private double inseam;
 
     private String comment;
 
     private Integer id;
 
-    public person(String name, String date, Float neck, Float bust, Float chest,
-                  Float waist, Float hip, Float inseam, String comment) {
+    public person(String name, String date, double neck, double bust, double chest,
+                  double waist, double hip, double inseam, String comment) {
         this.name = name;
         this.date = date;
         this.neck = neck;
@@ -50,26 +50,26 @@ public class person implements Serializable{
     public person(String name, String date) {
         this.name = name;
         this.date = date;
-        this.neck = null;
-        this.bust = null;
-        this.chest = null;
-        this.waist = null;
-        this.hip = null;
-        this.inseam = null;
-        this.comment = null;
+        this.neck = 0.0;
+        this.bust = 0.0;
+        this.chest = 0.0;
+        this.waist = 0.0;
+        this.hip = 0.0;
+        this.inseam = 0.0;
+        this.comment = "";
         this.id = 0;
     }
 
     public person() {
-        this.name = null;
-        this.date = null;
-        this.neck = null;
-        this.bust = null;
-        this.chest = null;
-        this.waist = null;
-        this.hip = null;
-        this.inseam = null;
-        this.comment = null;
+        this.name = "";
+        this.date = "";
+        this.neck = 0.0;
+        this.bust = 0.0;
+        this.chest = 0.0;
+        this.waist = 0.0;
+        this.hip = 0.0;
+        this.inseam = 0.0;
+        this.comment = "";
         this.id = 0;
     }
 
@@ -104,7 +104,7 @@ public class person implements Serializable{
 
 
     // Neck
-    public float getNeck() {
+    public double getNeck() {
         return neck;
     }
 
@@ -114,15 +114,15 @@ public class person implements Serializable{
 
     public void setNeck(String neck) {
         if (neck.length() == 0) {
-            return;
+            this.neck = 0.0;
         } else {
-            this.neck = Float.valueOf(neck);
+            this.neck = Double.parseDouble(neck);
         }
     }
 
 
     // Bust
-    public float getBust() {
+    public double getBust() {
         return bust;
     }
 
@@ -132,15 +132,15 @@ public class person implements Serializable{
 
     public void setBust(String bust) {
         if (bust.length() == 0) {
-            return;
+            this.bust = 0.0;
         } else {
-            this.bust = Float.valueOf(bust);
+            this.bust = Double.parseDouble(bust);
         }
     }
 
 
     // Chest
-    public float getChest() {
+    public double getChest() {
         return chest;
     }
 
@@ -150,15 +150,15 @@ public class person implements Serializable{
 
     public void setChest(String chest) {
         if (chest.length() == 0) {
-            return;
+            this.chest = 0.0;
         } else {
-            this.chest = Float.valueOf(chest);
+            this.chest = Double.parseDouble(chest);
         }
     }
 
 
     // Waist
-    public float getWaist() {
+    public double getWaist() {
         return waist;
     }
 
@@ -168,15 +168,15 @@ public class person implements Serializable{
 
     public void setWaist(String waist) {
         if (waist.length() == 0) {
-            return;
+            this.waist = 0.0;
         } else {
-            this.waist = Float.valueOf(waist);
+            this.waist = Double.parseDouble(waist);
         }
     }
 
 
     // Hip
-    public float getHip() {
+    public double getHip() {
         return hip;
     }
 
@@ -186,15 +186,15 @@ public class person implements Serializable{
 
     public void setHip(String hip) {
         if (hip.length() == 0) {
-            return;
+            this.hip = 0.0;
         } else {
-            this.hip = Float.valueOf(hip);
+            this.hip = Double.parseDouble(hip);
         }
     }
 
 
     // Inseam
-    public float getInseam() {
+    public double getInseam() {
         return inseam;
     }
 
@@ -204,9 +204,9 @@ public class person implements Serializable{
 
     public void setInseam(String inseam) {
         if (inseam.length() == 0) {
-            return;
+            this.inseam = 0.0;
         } else {
-            this.inseam = Float.valueOf(inseam);
+            this.inseam = Double.parseDouble(inseam);
         }
     }
 
@@ -217,9 +217,7 @@ public class person implements Serializable{
     }
 
     public void setComment(String comment) {
-        if (comment.length() != 0) {
             this.comment = comment;
-        }
     }
 
     // ID
@@ -249,18 +247,6 @@ public class person implements Serializable{
 
     @Override
     public String toString() {
-        /*return  " Name = " + name + " Date =  " + date.toString() + " Neck = " + neck.toString()
-                + " Bust = " + bust.toString() + " Chest = " + chest.toString() +
-                " Waist = " + waist.toString() + " Hip = " + hip.toString() + " Inseam = " + inseam.toString()
-                + " Comment = " + comment;*/
-        /*
-        try {
-            return "Name = " + this.name + ", Date = " + date;
-        } catch (NullPointerException e){
-            return "Name = " + this.name;
-        } catch (RuntimeException e){
-            return "Name = " + this.name;
-        }*/
 
         return "Name = " + this.name + ", Date = " + date + ", Id = " + this.id.toString();
     }

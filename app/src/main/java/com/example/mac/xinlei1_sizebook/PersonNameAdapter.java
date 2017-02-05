@@ -1,5 +1,6 @@
 package com.example.mac.xinlei1_sizebook;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,8 +58,12 @@ public class PersonNameAdapter extends RecyclerView.Adapter<PersonNameAdapter.Vi
             public void onClick(View v) {
                 int position = vh.getAdapterPosition();
 
-                String name = mPersonNameList.get(position);
-                Toast.makeText(v.getContext(), "you clicked " + name, Toast.LENGTH_SHORT).show();
+                //String name = mPersonNameList.get(position);
+
+                Intent intent = new Intent(v.getContext(), ViewEdit_activity.class);
+                intent.putExtra("selected_id", position);
+                Log.d("Person_selected_pos", Integer.toString(position));
+                v.getContext().startActivity(intent);
             }
         });
         return vh;

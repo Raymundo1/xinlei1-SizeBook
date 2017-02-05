@@ -66,12 +66,13 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
                                 });
                         builder2.show();
                     } else {
-                        int count = 0;
+                        int count = -1;
                         SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                         int defaultValue = getPreferences(MODE_PRIVATE).getInt("count_person",count);
                         ++defaultValue;
                         getPreferences(MODE_PRIVATE).edit().putInt("count_person", defaultValue).apply();
                         count = getPreferences(MODE_PRIVATE).getInt("count_person", count);
+
 
                         person new_person = new person();
                         new_person = Set_new_person(new_person);

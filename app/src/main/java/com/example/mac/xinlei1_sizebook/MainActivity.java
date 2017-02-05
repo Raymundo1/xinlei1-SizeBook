@@ -2,6 +2,7 @@ package com.example.mac.xinlei1_sizebook;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
                         personList.add(new_person);
                     } else {
                         if (!personList.get(personList.size() - 1).equals(new_person)) {
-                            Log.d("check if it is same", Boolean.toString(personList.get(personList.size() - 1).equals(new_person)));
+                            //Log.d("check if it is same", Boolean.toString(personList.get(personList.size() - 1).equals(new_person)));
                             Log.d("new_person", new_person.toString());
                             personList.add(new_person);
                         }
@@ -77,6 +78,27 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
 
                 case ActivityConstants.VIEW_ACTIVITY:
                     // we should saveInFile when we edit in ViewActivity
+                    int delete_person_id = getIntent().getIntExtra("delete_person_id", 0);
+                    Log.d("delete_id", Integer.toString(delete_person_id));
+                    personList.remove(delete_person_id);
+
+
+                    int order = 0;
+                    for (person item : personList) {
+                        item.setId(order);
+                        order = order + 1;
+                    }
+
+                    Log.d("after_delete", personList.toString());
+
+                    //SharedPreferences pref = getSharedPreferences("Add_activity.xml", MODE_PRIVATE);
+                    //int person_num = pref.getInt("count_person", 0);
+
+                    SharedPreferences.Editor editor = getSharedPreferences("Add_activity", MODE_PRIVATE).edit();
+                    editor.putInt("count_person", personList.size()-1);
+                    editor.apply();
+
+                    saveInFile();
                     break;
             }
         }
