@@ -8,7 +8,7 @@ Assignment 1 of CMPUT301 at University of Alberta
 
 ### Video URL
 ----
-[Youtube](www.youtube.ca) (The theme color may not be consistent with the final version)
+[Youtube](https://www.youtube.com/watch?v=orbX8Ln6HCw) (The theme color may not be consistent with the final version)
 
 ###Credits
 ----
