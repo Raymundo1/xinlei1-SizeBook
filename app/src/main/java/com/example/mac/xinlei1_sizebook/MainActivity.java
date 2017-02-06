@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -127,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements ActivityConstants
         // add a decoration of list
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
         //mRecyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.line), true, true));
+
+        TextView count = (TextView) findViewById(R.id.view_count);
+        String content = Integer.toString(personList.size()) + " record(s)";
+        count.setText(content);
 
 
     }
