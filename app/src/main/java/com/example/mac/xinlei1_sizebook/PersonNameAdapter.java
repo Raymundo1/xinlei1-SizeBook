@@ -16,6 +16,10 @@ import java.util.List;
 /**
  * Created by mac on 2017/1/23.
  * Resource: http://developer.android.com/training/material/lists-cards.html
+ *
+ * The bridge between a RecyclerView and the data that backs the list
+ * Using PersonNameAdapter can get a more flexible list
+ *
  */
 
 

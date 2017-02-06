@@ -1,34 +1,33 @@
 package com.example.mac.xinlei1_sizebook;
 
-import android.util.Log;
+
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+
 
 /**
  * Created by mac on 2017/1/23.
  * Person class
  */
 
+/**
+ * Using unique id to identify person
+ *
+ * Using name, date, neck, bust, chest, waist, hip, inseam, comment
+ *      to describe person's dimension
+ *
+ */
+
 public class person implements Serializable{
 
     private String name;
-
-    //private Calendar date = Calendar.getInstance();
-    //private SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
     private String date;
-
     private double neck;
     private double bust;
     private double chest;
     private double waist;
     private double hip;
     private double inseam;
-
     private String comment;
 
     private Integer id;
@@ -91,16 +90,6 @@ public class person implements Serializable{
     public void setDate(String date) {
         this.date = date;
     }
-
-    /*
-    public void setDate(String date) {
-        if (date.length() == 0) {
-                return;
-        } else {
-                this.date = date;
-        }
-
-    }*/
 
 
     // Neck
@@ -229,7 +218,12 @@ public class person implements Serializable{
         this.id = id;
     }
 
-
+    /**
+     * Rewrite the equals methods
+     * Using unique id to determine if they are equal
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == null) {
@@ -245,9 +239,12 @@ public class person implements Serializable{
         return false;
     }
 
+    /**
+     * print basic information
+     * @return String
+     */
     @Override
     public String toString() {
-
         return "Name = " + this.name + ", Date = " + date + ", Id = " + this.id.toString();
     }
 }

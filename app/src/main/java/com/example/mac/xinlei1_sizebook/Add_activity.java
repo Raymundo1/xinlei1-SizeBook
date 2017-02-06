@@ -12,6 +12,17 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Using this activity to execute Add person Action
+ * Using Intent to return the person which be added to the MainActivity
+ * menu (res/menu/add_activity_menu.xml)
+ *      menu.Cancel -> cancel executing add person action
+ *      menu.Add -> Add the person
+ *
+ * layout: activity_add_activity.xml
+ *
+ * Add_activity links with MainActivity
+ */
 public class Add_activity extends AppCompatActivity implements ActivityConstants {
 
     private EditText editText_name;
@@ -51,9 +62,11 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            // Add Action
             case R.id.add_person_done:
                 try {
                     // store the information in person class
+                    // Judging if the name is empty or not
                     if (editText_name.getText().toString().length() == 0) {
                         AlertDialog.Builder builder2 = new AlertDialog.Builder(Add_activity.this);
                         builder2.setMessage("Name and Date can not be empty")
@@ -66,6 +79,8 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
                                 });
                         builder2.show();
                     } else {
+
+                        // use SharedPreference to store the count of people which
                         int count = -1;
                         SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
                         int defaultValue = getPreferences(MODE_PRIVATE).getInt("count_person",count);
@@ -77,9 +92,6 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
                         person new_person = new person();
                         new_person = Set_new_person(new_person);
                         new_person.setId(count);
-
-                        Log.d("Add_person type", new_person.getClass().getName());
-                        Log.d("Add_person", new_person.toString());
 
                         Intent intent1 = new Intent(Add_activity.this, MainActivity.class);
                         intent1.putExtra("new_person", new_person);
@@ -93,6 +105,7 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
 
                 break;
 
+            // Cancel Action
             case R.id.add_person_cancel:
                 // URL : http://developer.android.com/guide/topics/ui/dialogs.html
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(Add_activity.this);
@@ -119,6 +132,11 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
         return true;
     }
 
+    /**
+     * get all information to set a new person
+     * @param new_person
+     * @return new_person
+     */
     private person Set_new_person(person new_person) {
 
         new_person.setName(editText_name.getText().toString());
@@ -130,7 +148,6 @@ public class Add_activity extends AppCompatActivity implements ActivityConstants
         new_person.setHip(editText_hip.getText().toString());
         new_person.setInseam(editText_inseam.getText().toString());
         new_person.setComment(editText_comment.getText().toString());
-
 
         return new_person;
     }

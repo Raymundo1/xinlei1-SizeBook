@@ -13,9 +13,15 @@ import android.view.View;
 /**
  * Created by mac on 2017/1/24.
  * Simple RecyclerView ItemDecoration
+ *
+ * Features:
+ *      Can use any drawable as divider
+ *      Divider visible also at the beginning and end of the item's list(disable by default)
+ *      Only works with LinearLayoutManager
  */
 
 
+// Date : Jan.24 2017
 // URL : https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36
 // Change parent.getChildPosition(view) => parent.getChildLayoutPosition(view)
 

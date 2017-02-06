@@ -20,6 +20,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * To view all the information of selected_person
+ *
+ * layout: activity_view_edit_activity.xml
+ *
+ * menu (res/menu/viewedit_activity_menu.xml)
+ *      menu.Edit -> run the Edit_activity to edit selected_person
+ *      menu.Delete -> delete the selected_person
+ *
+ * ViewEdit_activity links with MainActivity and Edit_activity
+ */
 public class ViewEdit_activity extends AppCompatActivity implements ActivityConstants{
 
     private static final String FILENAME = "person.txt";
@@ -29,44 +40,41 @@ public class ViewEdit_activity extends AppCompatActivity implements ActivityCons
 
     int person_id;
 
-//    private TextView textView_name;
-//    private TextView textView_date;
-//    private TextView textView_neck;
-//    private TextView textView_bust;
-//    private TextView textView_chest;
-//    private TextView textView_waist;
-//    private TextView textView_hip;
-//    private TextView textView_inseam;
-//    private TextView textView_comment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_edit_activity);
 
         loadFromFile();
-        //String name = getIntent().getStringExtra("selected_name");
         person_id = getIntent().getIntExtra("selected_id", 0);
         selected_person = personList.get(person_id);
 
         Log.d("selected_person", selected_person.toString());
-
         setTextView(selected_person);
 
     }
 
+    /**
+     * put the viewedit_activity_menu.xml(res/menu) into MainActivity menu
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.viewedit_activity_menu, menu);
         return true;
     }
 
+    /**
+     * set the action if clicked the item which in Activity menu
+     * @param item
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_person:
                 Intent intent = new Intent(ViewEdit_activity.this, MainActivity.class);
-                Log.d("delete_person_id", Integer.toString(person_id));
                 intent.putExtra("delete_person_id", person_id);
                 intent.putExtra("calling-activity", ActivityConstants.VIEW_ACTIVITY);
                 startActivity(intent);
@@ -84,6 +92,11 @@ public class ViewEdit_activity extends AppCompatActivity implements ActivityCons
         return true;
     }
 
+
+    /**
+     * Fill the information of selected_person to the screen
+     * @param selected_person
+     */
     private void setTextView(person selected_person) {
 
         TextView textView_name = (TextView) findViewById(R.id.view_name);
@@ -116,6 +129,11 @@ public class ViewEdit_activity extends AppCompatActivity implements ActivityCons
 
     }
 
+    /**
+     * Loads personList from file.
+     * @throws FileNotFoundException if the file is not created
+     * @throws IOException to Trace the Error
+     */
     private void loadFromFile() {
         try {
 

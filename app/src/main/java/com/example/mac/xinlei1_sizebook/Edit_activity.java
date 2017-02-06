@@ -24,6 +24,14 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Run by clicking edit icon in menu of ViewEdit_activity
+ * To Edit the person's information
+ *
+ * Button DONE on the bottom of Screen which be used to finish editing
+ *
+ * Edit_activity links with MainActivity
+ */
 public class Edit_activity extends AppCompatActivity {
 
     private static final String FILENAME = "person.txt";
@@ -54,6 +62,9 @@ public class Edit_activity extends AppCompatActivity {
 
         setEditTextView(selected_person);
 
+        // Using button DONE to finish editing selected person
+        //  and send the selected_person's id,
+        //  and equip the selected_person with new information
         Button button = (Button) findViewById(R.id.edit_finish);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +78,11 @@ public class Edit_activity extends AppCompatActivity {
         });
     }
 
+    /**
+     * set the view of EditText
+     * put the information of selected_person
+     * @param selected_person
+     */
     private void setEditTextView(person selected_person) {
 
         textView_name = (EditText) findViewById(R.id.edit_name);
@@ -97,6 +113,11 @@ public class Edit_activity extends AppCompatActivity {
         textView_comment.setText(selected_person.getComment());
     }
 
+    /**
+     * Put all the edited information to selected_person
+     * @param selected_person
+     * @return selected_person
+     */
     private person getEditPerson(person selected_person) {
 
         selected_person.setName(textView_name.getText().toString());
@@ -109,10 +130,14 @@ public class Edit_activity extends AppCompatActivity {
         selected_person.setInseam(textView_inseam.getText().toString());
         selected_person.setComment(textView_comment.getText().toString());
 
-
         return selected_person;
     }
 
+    /**
+     * Loads personList from file.
+     * @throws FileNotFoundException if the file is not created
+     * @throws IOException to Trace the Error
+     */
     private void loadFromFile() {
         try {
 
@@ -132,6 +157,10 @@ public class Edit_activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves person in file in JSON format.
+     * @throws FileNotFoundException if folder not exists
+     */
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
