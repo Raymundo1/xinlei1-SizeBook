@@ -1,4 +1,4 @@
-#**xinlei1-SizeBook**
+**xinlei1-SizeBook**
 ------
 Assignment 1 of CMPUT301 at University of Alberta
 
@@ -10,14 +10,14 @@ Assignment 1 of CMPUT301 at University of Alberta
 ----
 [Youtube](https://www.youtube.com/watch?v=orbX8Ln6HCw) (The theme color may not be consistent with the final version)
 
-###Credits
+### Credits
 ----
 + [Gson](https://sites.google.com/site/gson/gson-user-guide) - A Java library that can be used to convert Java Objects into their JSON representation.
 + [Android Developers](https://developer.android.com/index.html)
 + [RecyclerView](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) - A flexible view for providing a limited window into a large data set.
 + [DividerItemDecoration](https://gist.github.com/lapastillaroja/858caf1a82791b6c1a36) - Simple RecyclerView ItemDecoration
 
-###License
+### License
 -----
 This software is under [MIT license](http://opensource.org/licenses/MIT)
 ```
